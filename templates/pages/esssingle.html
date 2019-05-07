@@ -1,0 +1,157 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} | {{ess.title}}  {% endblock %}
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <h1 class="display-4">{{ess.title}}</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Breadcrumb -->
+      <section id="bc" class="mt-3">
+        <div class="container">
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="{% url 'Essential' %}">Essentials Oils</a>
+              </li>
+              <li class="breadcrumb-item active">{{ess.title}}</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+    
+      <!-- Listing -->
+      <section id="listing" class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <!-- Home Main Image -->
+              <img src="{{ ess.photo_main.url }}" alt="" class="img-main img-fluid mb-2">
+              <!-- Thumbnails -->
+              <div class="row mb-5 thumbs">
+                  {% if ess.photo_1 %}
+                <div class="col-md-2">
+                  <a href="{{ ess.photo_1.url }}" data-lightbox="home-images">
+                    <img src="{{ ess.photo_1.url }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+                {% endif %}
+                {% if ess.photo_2 %}
+                <div class="col-md-2">
+                  <a href="{{ ess.photo_2.url }}" data-lightbox="home-images">
+                    <img src="{{ ess.photo_2.url }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+              <!-- Fields -->
+              <div class="row mb-5 fields">
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-money-bill-alt"></i> Minimum Price:
+                      <span class="float-right">{{ ess.price }}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-square"></i> Botnical Name:
+                      <span class="float-right">{{ess.botanicalname}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-money-bill-alt"></i> Maximum Price:
+                      <span class="float-right">{{ ess.maxprice | intcomma }}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-square"></i> Origin:
+                      <span class="float-right">{{ess.origin}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+    
+              <!-- Description -->
+              <div class="row mb-5">
+                <div class="col-md-12">
+                       <p> <i>{{ess.shordesc }}</i>
+                        <span class="float-right"></span>
+                       </p>
+                       <p> <i>{{ess.longdesc }}</i>
+                        <span class="float-right"></span>
+                       </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card mb-3">
+                <span align="center"><b>Product Variations</b></span>
+                <div class="card-body">
+                        {% if ess.variation1 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation1}}
+                        </li>
+                        {% endif %}
+                        {% if ess.variation2 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation2}}
+                         </li>
+                         {% endif %}
+                         {% if ess.variation3 != '' %}
+                         <li class="list-group-item text-secondary">
+                         <i class="fas fa-square"></i> {{ess.variation3}}
+                         </li>
+                         {% endif %}
+                         {% if ess.variation4 != '' %}
+                         <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation4}}
+                        </li>
+                        {% endif %}
+                        {% if ess.variation5 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation5}}
+                        </li>
+                        {% endif %}
+                        {% if ess.variation6 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation6}}
+                        </li>
+                        {% endif %}
+                        {% if ess.variation7 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation7}}
+                        </li>
+                        {% endif %}
+                        {% if ess.variation8 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation8}}
+                        </li>
+                        {% endif %}
+                        {% if ess.variation9 != '' %}
+                        <li class="list-group-item text-secondary">
+                        <i class="fas fa-square"></i> {{ess.variation9}}
+                        </li>
+                        {% endif %}
+                                
+                </div>
+              </div>
+              <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+            </div>
+          </div>
+        </div>
+      </section>
+      {% include 'partials/enquiry.html' with key=ess %}
+{% endblock %}
+  

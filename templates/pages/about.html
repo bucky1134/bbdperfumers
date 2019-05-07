@@ -1,0 +1,73 @@
+
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | About Us {% endblock %}
+{% block content %}
+
+<section id="showcase-inner" class="py-5 text-white">
+   
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <h1 class="display-4">About BBD Perfumers</h1>
+              <p class="lead">Good manners and good cologne is what transforms the man into a gentleman!</p>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Breadcrumb -->
+      <section id="bc" class="mt-3">
+        <div class="container">
+          <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'index' %}">
+                  <i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="breadcrumb-item active"> About</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+    
+      <section id="about" class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-8">
+              <h2>We Deals with Perfect Quality</h2>
+              <p class="lead"> Perfume is the indespensable compliment to the personality of person, the finishing touch on a dress.
+                    </p>
+              <img src="{% static 'image/about.jpg' %}" alt="">
+              <p class="mt-4"><b>Baba Banarsi Dass perfumers</b> has for 20 years been involved in the mission of sharing the best quality essential oils in India. We are one of India's leading Essential Oils Suppliers in the domestic market. In order to establish a standard of Quality, we provide the purest and highest quality product at the value-rich price.</p>
+
+              <p class="mt-4"> We are committed to delivering a high-quality product. In order to do same, we produce most of the essential oils by ourself and assure the quality of the products provided by our suppliers. Through efficient supply chain management, we are able to ensure fair prices for producers whilst at the same time remaining competitive.</p>
+                  
+              <p class="mt-4"> Building solid trustworthy relationships with our customers is our top priority. We are committed to remaining responsive to our customers’ needs by consistently responding with honesty, integrity and excellence.</p>
+                  
+                  <p class="mt-4"> We expand our line with new oils and purposely-built products to satisfy the most experienced consumer and to help introduce new consumers to the benefits of essential oils. The company strives to provide products that improve the lives of people worldwide.</p>
+            </div>
+            <div class="col-md-4">
+                <div class="card">
+                  <img class="card-img-top" src="{% static 'image/logoabout.jpeg' %}" alt="Our TradeMark">
+                  
+              </div>
+      
+            
+          </div>
+        </div>
+      </section>
+    
+      <!-- Work -->
+      <section id="work" class="bg-dark text-white text-center">
+        <h2 class="display-4">We Work For You</h2>
+        <h4>Good manners and good cologne is what transforms the man into a gentleman!</h4>
+        <hr>
+        <a href="{% url 'index' %}" class="btn btn-secondary text-white btn-lg">View Our Featured Listings</a>
+      </section>
+    
+     
+    
+
+
+{% endblock %}

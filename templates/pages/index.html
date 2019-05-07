@@ -1,0 +1,175 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Welcome  {% endblock %}
+{% block content %} 
+{% load humanize %}
+
+<style>
+
+    #tales {
+      width: 74%;
+height: 400px;
+    }
+    .carousel-inner img {
+      margin: auto;
+      margin-top:5px;
+      border-radius: 7px;
+    }
+    @media only screen and (min-width : 1200px) {
+      .carousel-caption
+      {
+        top: 60%;
+      }
+    }
+</style>
+<script type="text/javascript">
+
+  $(document).ready(function () {
+
+      $('.carousel-caption').hide();
+      $('img[alt = imgAlt').on('hover', function () {
+          $('.carousel-caption').fadeIn();
+      });
+  });
+
+</script>
+<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+    <ol class="carousel-indicators">
+      <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+      <li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+    </ol>
+    <div class="carousel-inner">
+      <div class="carousel-item active">
+          <a href="{% url 'Aroma' %}"> 
+        <img class="d-block" src="{% static 'image/aroma oils.jpg' %}" alt="First slide" id= "tales">
+          </a>
+        <div class="carousel-caption ">
+            <h1 style="color:black"><b>Aroma Therapy Oils</b></h1>
+            <h5><p>Aromatherapy is a type of alternative medicine that uses essential oils to improve a person's health or mood</p></h5>
+          </div>
+      </div>
+      <div class="carousel-item">
+          <a href="{% url 'Essential' %}"> 
+        <img class="d-block " src="{% static 'image/essential oils.jpg' %}" alt="Second slide" id= "tales">
+          </a>
+        <div class="carousel-caption">
+            <h1 style="color:black"><b>Essential Oils</b></h1>
+            <h5><p>Essential Oils are basically the botanical extracts of various herbs, roots, leaves etc. We use essential oils for Aromatherapy</p></h5>
+          </div>
+      </div>
+      <div class="carousel-item">
+          <a href="{% url 'Attar' %}"> 
+        <img class="d-block " src="{% static 'image/attars.jpg' %}" alt="Third slide" id= "tales">
+          </a>
+        <div class="carousel-caption ">
+            <h1 style="color:black"><b>Attars</b></h1>
+            <h5><p> Attars are traditional Indian perfume oils made by ancient perfume artisans.</p></h5>
+          </div>
+      </div>
+      <div class="carousel-item">
+          <a href="{% url 'Floural' %}"> 
+          <img class="d-block " src="{% static 'image/floral oil.jpg' %}" alt="Third slide" id= "tales">
+          </a>
+          <div class="carousel-caption">
+              <h1 style="color:black"><b>Floral Waters</b></h1>
+              <h5><p>  Floral waters are made from various types of plants and flowers that are generally used to make essential oils.</p></h5>
+             
+            </div>
+        </div>
+    </div>
+    <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="sr-only">Previous</span>
+    </a>
+    <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="sr-only">Next</span>
+    </a>
+  </div>
+<!----listing-->
+<div>
+<section id="listings" class="py-5">
+    <div class="container">
+      <h3 class="text-center mb-3">Featured Products</h3>
+      <hr  class="text-center mb-3"  style="width: 250px">
+      <div class="row">
+        <!-- Listing 1 -->
+        {% if fps %}
+         {% for l in fps %}
+         <!-- Listing 1 -->
+        <div class="col-md-6 col-lg-4 mb-4">
+            <div class="card listing-preview" >
+              <img class="card-img-top" src="{{ l.photo_main.url }}" alt="" height="250">
+              <div class="card-img-overlay">
+                <h2>
+                  <span class="badge badge-secondary text-white">&#x20B9 {{ l.price | intcomma }}
+                      {% if l.maxprice <= 1 %}
+                      /{{l.qtytype}}
+                      {%else%}
+                      -{{ l.maxprice | intcomma }}/{{l.qtytype}}
+                      {% endif %}
+                  </span>
+                </h2>
+              </div>
+              <div class="card-body">
+                <div class="listing-heading text-center">
+                  <h4 class="text-primary">{{ l.title }}</h4>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary" style="height: 5rem;">
+                  <div class="col-6">
+                    <p><b>Botanical Name:</b></p>{{l.Botanicalname}}</div>
+                  <div class="col-6">
+                    <p><b>Origin:</b></p>{{l.origin}}</div>
+                </div>
+                <hr>
+                <div class="row py-2 text-secondary" style="height: 12rem;">
+                    <div> {{l.shordesc}}</div>
+                   
+                </div>
+                <hr>
+                <a href="listing.html" class="btn btn-primary btn-block">More Info</a>
+              </div>
+            </div>
+          </div>
+         {% endfor %}
+         {% else %}
+         <div class="col-md-12">
+          <p align="Center">No Featured Products are available.</p>
+         </div>
+         {% endif %}
+      </div>
+    </div>
+  </section>
+
+  <section id="services" class="py-5 bg-secondary text-white">
+    <div class="container">
+      <div class="row text-center">
+        <div class="col-md-4">
+          <i class="fas fa-comment fa-4x mr-4"></i>
+          <hr>
+          <h3>Consulting Services</h3>
+          <p>we are enriched with the ability to help our customers to know more and understand about the product quality, description and its usage.
+            we only focus on the productivity with complete customer satisfaction and its interest in our product.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="fas fa-home fa-4x mr-4"></i>
+          <hr>
+          <h3>Product delivery</h3>
+          <p>we have the functionality for product delivery also where a customer can get our product by proper ordering and get effective products.</p>
+        </div>
+        <div class="col-md-4">
+          <i class="far fa-address-card fa-4x mr-4"></i>
+          <hr>
+          <h3>Contact</h3>
+          <p>You can directly contact with us for proper understanding related to product as well as product ordering.
+            we are very pleased to help you and provide best support from us.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+{% endblock %}

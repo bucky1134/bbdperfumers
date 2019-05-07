@@ -1,0 +1,118 @@
+
+{% extends 'base.html' %}
+{% load humanize %}
+{% block title %} | {{floralss.title}}  {% endblock %}
+{% block content %}
+<section id="showcase-inner" class="py-5 text-white">
+        <div class="container">
+          <div class="row text-center">
+            <div class="col-md-12">
+              <h1 class="display-4">{{floralss.title}}</h1>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      <!-- Breadcrumb -->
+      <section id="bc" class="mt-3">
+        <div class="container">
+          <nav>
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item">
+                <a href="{% url 'index' %}"><i class="fas fa-home"></i> Home</a>
+              </li>
+              <li class="breadcrumb-item">
+                <a href="{% url 'Floural' %}">Floral Waters</a>
+              </li>
+              <li class="breadcrumb-item active">{{floralss.title}}</li>
+            </ol>
+          </nav>
+        </div>
+      </section>
+    
+      <!-- Listing -->
+      <section id="listing" class="py-4">
+        <div class="container">
+          <div class="row">
+            <div class="col-md-9">
+              <!-- Home Main Image -->
+              <img src="{{ floralss.photo_main.url }}" alt="" class="img-main img-fluid mb-2">
+              <!-- Thumbnails -->
+              <div class="row mb-5 thumbs">
+                  {% if floralss.photo_1 %}
+                <div class="col-md-2">
+                  <a href="{{ floralss.photo_1.url }}" data-lightbox="home-images">
+                    <img src="{{ floralss.photo_1.url }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+                {% endif %}
+                {% if floralss.photo_2 %}
+                <div class="col-md-2">
+                  <a href="{{ floralss.photo_2.url }}" data-lightbox="home-images">
+                    <img src="{{ floralss.photo_2.url }}" alt="" class="img-fluid">
+                  </a>
+                </div>
+                {% endif %}
+              </div>
+              <!-- Fields -->
+              <div class="row mb-5 fields">
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-money-bill-alt"></i> Minimum Price:
+                      <span class="float-right">{{ floralss.price }}</span>
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-square"></i> Botanical Name:
+                      <span class="float-right">{{floralss.botanicalname}}</span>
+                    </li>
+                  </ul>
+                </div>
+                <div class="col-md-6">
+                  <ul class="list-group list-group-flush">
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-money-bill-alt"></i> Maximum Price:
+                      {% if floralss.maxprice != 1 %}
+                      <span class="float-right">{{ floralss.maxprice | intcomma }}</span>
+                      {% else %}
+                      <span class="float-right">NIL</span>
+                      {% endif %}
+                    </li>
+                    <li class="list-group-item text-secondary">
+                      <i class="fas fa-square"></i> Origin:
+                      <span class="float-right">{{floralss.origin}}
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+    
+              <!-- Description -->
+              <div class="row mb-5">
+                <div class="col-md-12">
+                       <p> <i>{{floralss.shordesc }}</i>
+                        <span class="float-right"></span>
+                       </p>
+                       <p> <i>{{floralss.longdesc }}</i>
+                        <span class="float-right"></span>
+                       </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-3">
+              <div class="card mb-3">
+                <span align="center"><b>Product Variations</b></span>
+                <div class="card-body">
+                        <span align="center">No Product variation available.</span>
+                </div>
+              </div>
+              <button class="btn-primary btn-block btn-lg" data-toggle="modal" data-target="#inquiryModal">Make An Inquiry</button>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+      {% include 'partials/enquiry.html' with key=floralss %}
+    
+{% endblock %}
+  

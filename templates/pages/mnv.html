@@ -1,0 +1,43 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %} | Mission and Vision  {% endblock %}
+{% block content %}
+
+<style>
+        
+        
+        body, html {
+          height: 100%;
+          line-height: 1.8;
+        }
+        
+        /* Full height image header */
+        .bgimg-1 {
+          background-position: center;
+          background-size: cover;
+          background-image: url("{% static 'image/featuredabout.jpg' %}");
+          height: 50%
+        }
+        
+        .w3-bar .w3-button {
+          padding: 16px;
+        }
+        </style>
+
+<!-- Header with full-height image -->
+<div id="tt">
+<header class="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+        <div class="w3-display-left w3-text-white" style="padding:48px">
+          <span class="w3-jumbo w3-hide-small" style="color:white"><h2>Mission & Objectives </h2></span><br>
+          <span class="w3-xxlarge w3-hide-large w3-hide-medium" style="color:white">BBD Perfumers principal objective to provide essential oils that appeal to everyone and that can be used safely by everyone.
+
+                We work hard to deliver the best premium essential oils and proprietary blends in the market.
+                
+                We ensure the best quality i.e. 100% natural products, efficient management of the supply chain, a keen understanding of the buyer's requirements and providing an exemplary service.
+                </span><br><br>
+                <span style="color:white" class="w3-jumbo w3-hide-small" ><h2>Vision </h2></span>
+                <span class="w3-xxlarge w3-hide-large w3-hide-medium" style="color:white">To become the world’s leading essential oil based company by providing the best quality of oils and blends to our customers.
+                        </span><br>
+        </div> 
+    </div>
+{% endblock%}

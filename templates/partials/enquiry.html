@@ -1,3 +1,5 @@
+
+
 <script type="text/javascript">
             
   window.onload=function()
@@ -11,6 +13,7 @@
               <div class="modal-content">
                 <div class="modal-header">
                   <h5 class="modal-title" id="inquiryModalLabel">Make An Inquiry</h5>
+             
                   <button type="button" class="close" data-dismiss="modal">
                     <span>&times;</span>
                   </button>
@@ -19,6 +22,7 @@
                   <form  action="{% url 'contact' %}" method="POST">
                     {% csrf_token %}
                     {% if user.is_authenticated %}
+                   
                     <input type="hidden" name="username" value="{{user.username}}">
                     <input type="hidden" id="pageurl"  name="pageurl" value="pageurl" />
                     <div class="form-group">
@@ -33,6 +37,7 @@
                           <label for="lname" class="col-form-label">Last Name:</label>
                           <input type="text" name="lname" class="form-control"  value="{{user.last_name}}">
                         </div>
+                       
                         <div class="form-group">
                             <label for="Company" class="col-form-label">Company:</label>
                             <input type="text" name="company" class="form-control" >
@@ -50,6 +55,7 @@
                         <textarea name="message" class="form-control" required></textarea>
                       </div>
                       <hr>
+                     
                       <input type="submit" value="Send" class="btn btn-block btn-secondary">
                       {% else %}
                        <span align="center">Please Login! </span>
@@ -61,3 +67,5 @@
               </div>
             </div>
           </div>
+
+  

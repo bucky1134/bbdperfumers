@@ -25,6 +25,7 @@ urlpatterns = [
     path('attars/', include('attars.urls')),
     path('aromas/', include('aromas.urls')),
     path('florals/', include('florals.urls')),
+    path('featuredproduct/', include('featuredproduct.urls')),
     path('contact/',include('contact.urls')),
     path('admin/', admin.site.urls),
   

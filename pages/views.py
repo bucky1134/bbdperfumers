@@ -51,5 +51,5 @@ def mnv(request):
     return render(request, 'pages/mnv.html')
 
 def Quality(request):
-    return render(request, 'pages/Quality.html')
+    return render(request, 'pages/quality.html')
 

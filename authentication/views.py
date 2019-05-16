@@ -2,9 +2,9 @@ from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from django.contrib.auth.models import models, User, auth
 from django.contrib import messages
-
+from django.core.mail import send_mail
 from featuredproduct.models import fp
-
+import random
 
 
 def register(request):
@@ -54,12 +54,51 @@ def login(request):
     else:
         return render(request,'authentication/login.html')
 
-def cart(request):
-    return render(request,'authentication/cart.html')
+def forget(request):
+    if request.method == 'POST' :
+        username=request.POST['username']
+        try:
+            userdata=User.objects.get(username=username)
+            rand = User.objects.make_random_password()
+            send_mail(
+            'Password Recovery',
+            'Hi, \n\n Please find below your password..\n\n'+
+            'Password:'+rand+'\n',
+            'singhvishal7000@gmail.com',
+            [userdata.email],
+            fail_silently=False,
+            )
+        except Exception:
+            messages.error(request,'Please try again later or check your internet Connection!!')
+            return render(request,'authentication/forget.html')
+        else:
+            userdata.set_password(rand)
+            userdata.save()
+            messages.success(request,"Your temporary password has been sent to your registerd email.")
+            return render(request,'authentication/login.html')
+    else:
+        return render(request,'authentication/forget.html')
+        
 
 def logout(request):
     if request.method == 'POST' :
         auth.logout(request)
         return redirect('index')
 
+def changepass(request):
+    if request.method == 'POST' :
+        password=request.POST['newpassword']
+        cpassword=request.POST['confirmpassword']
+        if password == cpassword:
+            currentuser=request.user
+            currentuser.set_password(password)
+            currentuser.save()
+            messages.success(request,"password changed successfully")
+            return render(request,'pages/account.html')
+        else:
+            messages.error(request,"password does not matched")
+            return render(request,'authentication/changepassword.html')
+
+
+    return render(request,'authentication/changepassword.html')
 # Create your views here.

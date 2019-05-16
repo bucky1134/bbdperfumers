@@ -8,6 +8,8 @@ urlpatterns=[
     path('Account', views.Account , name='Account'),
     path('mnv', views.mnv , name='mnv'),
     path('Quality', views.Quality , name='Quality'),
+    path('search', views.search , name='search'),
+   
    
 
 

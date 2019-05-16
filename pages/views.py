@@ -3,6 +3,10 @@ from django.http import HttpResponse
 from django.contrib import messages
 from contact.models import Contact
 from featuredproduct.models import fp
+from attars.models import attar
+from essentials.models import essential
+from aromas.models import aroma
+from florals.models import floral
 def index(request):
     fps=fp.objects.all()
     context={
@@ -14,6 +18,22 @@ def index(request):
 def about(request):
     return render(request, 'pages/about.html')
 
+
+def search(request):
+    if request.method == 'POST' :
+        searchname=request.POST['search']
+        essentials = essential.objects.filter(title__icontains=searchname)
+        aromas = aroma.objects.filter(title__icontains=searchname)
+        attars = attar.objects.filter(title__icontains=searchname)
+        florals = floral.objects.filter(title__icontains=searchname)
+        mycontext = {
+            'mysearch':searchname,
+            'essentials':essentials,
+            'aromas':aromas,
+            'attars':attars,
+            'florals':florals
+        }
+        return render(request, 'pages/search.html',mycontext)
 
 def Account(request):
     if request.session._session:

@@ -13,10 +13,7 @@ def Essential(request):
         'essentials':page_essential
     } 
     return render(request, 'pages/essential.html',context)
-
-def search(request):
-    return render(request, 'pages/search.html')
-
+    
 def ess(request, ess_id):
     ess=get_object_or_404(essential, pk=ess_id)
     context = {

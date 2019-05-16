@@ -1,0 +1,171 @@
+{% extends 'base.html'%}
+{% load static %}
+{% load humanize %}
+{% block title %} | Search  {% endblock %}
+{% block content %}
+<center><h3><b><p>Displaying Results of :"{{ mysearch }} "</p></b></h3></center>
+<section id="listings" class="py-4">
+        <div class="container">
+          <div class="row">
+            {% if essentials or aromas or attars or florals %}
+             {% if essentials %}
+             {% for l in essentials %}
+             <!-- Listing 1 -->
+            <div class="col-md-6 col-lg-4 mb-4">
+                <div class="card listing-preview" >
+                  <img class="card-img-top" src="{{ l.photo_main.url }}" alt="" height="250">
+                  <div class="card-img-overlay">
+                    <h2>
+                      <span class="badge badge-secondary text-white">&#x20B9 {{ l.price | intcomma }} - {{ l.maxprice | intcomma }}/kg</span>
+                    </h2>
+                  </div>
+                  <div class="card-body">
+                    <div class="listing-heading text-center">
+                      <h4 class="text-primary">{{ l.title }}</h4>
+                    </div>
+                    <hr>
+                    <div class="row py-2 text-secondary" style="height: 5rem;">
+                      <div class="col-6">
+                        <p><b>Botanical Name:</b></p>{{l.botanicalname}}</div>
+                      <div class="col-6">
+                        <p><b>Origin:</b></p>{{l.origin}}</div>
+                    </div>
+                    <hr>
+                    <div class="row py-2 text-secondary" style="height: 12rem;">
+                        <div> {{l.shordesc}}</div>
+                       
+                    </div>
+                    <hr>
+                    <a href="{% url 'ess' l.id %}" class="btn btn-primary btn-block">More Info</a>
+                  </div>
+                </div>
+              </div>
+             {% endfor %}
+             {% endif %}
+             {% if aromas %}
+                 {% for a in aromas %}
+                 <!-- Listing 1 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card listing-preview" >
+                      <img class="card-img-top" src="{{ a.photo_main.url }}" alt="" height="250">
+                      <div class="card-img-overlay">
+                        <h2>
+                          <span class="badge badge-secondary text-white">&#x20B9 {{ a.price | intcomma }}
+                            {% if a.maxprice <= 1 %}
+                            /kg
+                            {%else%}
+                            -{{ a.maxprice | intcomma }}/kg
+                            {% endif %}
+                            </span>
+                        </h2>
+                      </div>
+                      <div class="card-body">
+                        <div class="listing-heading text-center">
+                          <h4 class="text-primary">{{ a.title }}</h4>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary" style="height: 5rem;">
+                          <div class="col-6">
+                            <p><b>Botanical Name:</b></p>{{a.Botanicalname}}</div>
+                          <div class="col-6">
+                            <p><b>Origin:</b></p>{{a.origin}}</div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary" style="height: 12rem;">
+                            <div> {{a.shordesc}}</div>
+                           
+                        </div>
+                        <hr>
+                        <a href="{% url 'ass' a.id %}" class="btn btn-primary btn-block">More Info</a>
+                      </div>
+                    </div>
+                  </div>
+                 {% endfor %}
+                 {% endif %}
+                 {% if attars %}
+                 {% for a in attars %}
+                 <!-- Listing 1 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card listing-preview" >
+                      <img class="card-img-top" src="{{ a.photo_main.url }}" alt="" height="250">
+                      <div class="card-img-overlay">
+                        <h2>
+                          <span class="badge badge-secondary text-white">&#x20B9 {{ a.price | intcomma }}
+                            {% if a.maxprice <= 1 %}
+                            /kg
+                            {%else%}
+                            -{{ a.maxprice | intcomma }}/kg
+                            {% endif %}
+                            </span>
+                        </h2>
+                      </div>
+                      <div class="card-body">
+                        <div class="listing-heading text-center">
+                          <h4 class="text-primary">{{ a.title }}</h4>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary" style="height: 5rem;">
+                          <div class="col-6">
+                            <p><b>Botanical Name:</b></p>{{a.botanicalname}}</div>
+                          <div class="col-6">
+                            <p><b>Origin:</b></p>{{a.origin}}</div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary" style="height: 12rem;">
+                            <div> {{a.shordesc}}</div>
+                           
+                        </div>
+                        <hr>
+                        <a href="{% url 'attarss' a.id %}" class="btn btn-primary btn-block">More Info</a>
+                      </div>
+                    </div>
+                  </div>
+                 {% endfor %}
+                 {% endif %}
+                 {% if florals %}
+                 {% for l in florals %}
+                 <!-- Listing 1 -->
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="card listing-preview" >
+                      <img class="card-img-top" src="{{ l.photo_main.url }}" alt="" height="250">
+                      <div class="card-img-overlay">
+                        <h2>
+                          <span class="badge badge-secondary text-white">&#x20B9 {{ l.price | intcomma }}- {{ l.maxprice | intcomma }}/drum</span>
+                        </h2>
+                      </div>
+                      <div class="card-body">
+                        <div class="listing-heading text-center">
+                          <h4 class="text-primary">{{ l.title }}</h4>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary" style="height: 5rem;">
+                          <div class="col-6">
+                            <p><b>Botanical Name:</b></p>{{l.botanicalname}}</div>
+                          <div class="col-6">
+                            <p><b>Origin:</b></p>{{l.origin}}</div>
+                        </div>
+                        <hr>
+                        <div class="row py-2 text-secondary" style="height: 12rem;">
+                            <div> {{l.shordesc}}</div>
+                           
+                        </div>
+                        <hr>
+                        <a href="{% url 'floralss' l.id %}" class="btn btn-primary btn-block">More Info</a>
+                      </div>
+                    </div>
+                  </div>
+                 {% endfor %}
+                 
+                 {% endif %}
+                 {% else %}
+                 <div class="col-md-12">
+                       <center><b><p>No search is available.</p></b></center> 
+                       </div>
+                 {% endif %}
+                
+          </div>
+    </div>
+    </section>
+    
+
+{% endblock %}

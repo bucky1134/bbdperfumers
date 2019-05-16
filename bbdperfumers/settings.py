@@ -152,3 +152,8 @@ EMAIL_PORT = 587
 EMAIL_HOST_USER ='singhvishal7000@gmail.com'
 EMAIL_HOST_PASSWORD ='hyperlink@123'
 EMAIL_USE_TLS=True
+
+try:
+    from local_settings import *
+except ImportError:
+    pass
